@@ -27,7 +27,7 @@ SECRET_KEY = config('DJANGO_SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config(
-    'ALLOWED_HOST',
+    'ALLOWED_HOSTS',
     default='localhost,127.0.0.1,0.0.0.0'
 ).split(',')
 
@@ -160,8 +160,7 @@ SPECTACULAR_SETTINGS = {
     'VERSION': '1.0.0',
 }
 
-
-# Auth redirects for Django templates
-LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/loans/'
-LOGOUT_REDIRECT_URL = '/accounts/login/'
+# Auth redirects
+LOGIN_URL = '/admin/login/'
+LOGIN_REDIRECT_URL = '/admin/'
+LOGOUT_REDIRECT_URL = '/admin/login/'
