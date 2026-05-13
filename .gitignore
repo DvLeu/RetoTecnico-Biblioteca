@@ -1,0 +1,122 @@
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+*.egg
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+# Ignore local settings, database and media/uploads
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+media_root/
+staticfiles/
+# If using Django's static files collection
+static/
+
+# Django secret key and environment variables
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Django migrations - keep these in source control generally, so not ignored
+# If you need to ignore auto-generated migrations, add them here explicitly.
+
+# Logs
+*.log
+*.log.*
+logs/
+
+# Sentry
+sentry-debug.log
+
+# IDEs and editors
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python virtualenv
+pip-wheel-metadata/
+share/python-wheels/
+
+# egg and wheel
+*.egg-info/
+*.egg
+
+# mypy
+.mypy_cache/
+dmypy.json
+dmypy.sock
+
+# Docker
+# Ignore Docker artifacts and sensitive env files
+.dockerignore
+docker-compose.override.yml
+docker-compose.*.yml
+**/Dockerfile
+docker-compose.yml
+*.tar
+
+# Kubernetes
+.kube/
+
+# Node modules (if project includes frontend)
+node_modules/
+
+# End of file
