@@ -106,7 +106,7 @@ class Prestamo(models.Model):
         on_delete=models.PROTECT,
         related_name='prestamos'
     )
-    fecha_prestamo = models.DateField(default=timezone.now)
+    fecha_prestamo = models.DateField(default=timezone.localdate)
     fecha_devolucion = models.DateField()
     estado = models.CharField(
         max_length=20,
@@ -126,17 +126,21 @@ class Prestamo(models.Model):
                 'La fecha de devolución no puede ser anterior a la fecha del préstamo.'
             )
 
-        if not self.usuario.activo:
+        if self.usuario_id and not self.usuario.activo:
             raise ValidationError(
                 'No se puede registrar un préstamo para un usuario inactivo.'
             )
 
-        if not self.libro.activo:
+        if self.libro_id and not self.libro.activo:
             raise ValidationError(
                 'No se puede prestar un libro inactivo.'
             )
 
-        if self.estado == self.ACTIVO and self.libro.ejemplares_disponibles <= 0:
+        if (
+            self.libro_id
+            and self.estado == self.ACTIVO
+            and self.libro.ejemplares_disponibles <= 0
+        ):
             raise ValidationError(
                 'No hay ejemplares disponibles para este libro.'
             )
