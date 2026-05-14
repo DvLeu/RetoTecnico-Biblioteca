@@ -16,6 +16,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
 from django.urls import include, path
 
 from drf_spectacular.views import (
@@ -26,13 +27,22 @@ from drf_spectacular.views import (
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    # API de la aplicacion
+    # API de la aplicación
     path("", include("library.urls")),
-    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    # Proteccion de ser admin para poder ver la doc de la api y usarla
+    path(
+        "api/schema/",
+        login_required(SpectacularAPIView.as_view()),
+        name="schema",
+    ),
     path(
         "api/docs/",
-        SpectacularSwaggerView.as_view(url_name="schema"),
+        login_required(SpectacularSwaggerView.as_view(url_name="schema")),
         name="swagger_ui",
     ),
-    path("api/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
+    path(
+        "api/redoc/",
+        login_required(SpectacularRedocView.as_view(url_name="schema")),
+        name="redoc",
+    ),
 ]
