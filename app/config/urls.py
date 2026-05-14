@@ -17,6 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 from django.urls import include, path
 
 from drf_spectacular.views import (
@@ -26,10 +27,9 @@ from drf_spectacular.views import (
 )
 
 urlpatterns = [
+    path("", lambda request: redirect("swagger_ui")),
     path("admin/", admin.site.urls),
-    # API de la aplicación
     path("", include("library.urls")),
-    # Proteccion de ser admin para poder ver la doc de la api y usarla
     path(
         "api/schema/",
         login_required(SpectacularAPIView.as_view()),
