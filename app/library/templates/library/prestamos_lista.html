@@ -1,0 +1,41 @@
+{% extends "library/base.html" %}
+
+{% block content %}
+<h1>Préstamos</h1>
+
+<a href="{% url 'prestamo_crear' %}">Nuevo préstamo</a>
+<a class="secondary" href="/admin/">Admin</a>
+<a class="secondary" href="/api/docs/">Swagger</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>Usuario</th>
+        <th>Libro</th>
+        <th>Fecha préstamo</th>
+        <th>Fecha devolución</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for prestamo in prestamos %}
+        <tr>
+            <td>{{ prestamo.usuario }}</td>
+            <td>{{ prestamo.libro }}</td>
+            <td>{{ prestamo.fecha_prestamo }}</td>
+            <td>{{ prestamo.fecha_devolucion }}</td>
+            <td>{{ prestamo.estado }}</td>
+            <td>
+                <a href="{% url 'prestamo_editar' prestamo.id %}">Editar</a>
+                <a class="danger" href="{% url 'prestamo_eliminar' prestamo.id %}">Eliminar</a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td colspan="6">No hay préstamos registrados.</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

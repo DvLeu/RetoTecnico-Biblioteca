@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Biblioteca</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f4f4f4;
+        }
+
+        .container {
+            background: white;
+            padding: 24px;
+            border-radius: 8px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+
+        th, td {
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        a, button {
+            display: inline-block;
+            padding: 8px 12px;
+            margin: 4px 0;
+            background: #222;
+            color: white;
+            text-decoration: none;
+            border: 0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .danger {
+            background: #b00020;
+        }
+
+        .secondary {
+            background: #555;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            margin-bottom: 12px;
+        }
+
+        .message {
+            background: #e8f5e9;
+            border: 1px solid #a5d6a7;
+            padding: 10px;
+            margin-bottom: 16px;
+        }
+
+        .errorlist {
+            color: #b00020;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    {% if request.user.is_authenticated %}
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <div>
+                Sesión iniciada como <strong>{{ request.user.username }}</strong>
+            </div>
+
+            <form method="post" action="{% url 'cerrar_sesion' %}" style="margin: 0;">
+                {% csrf_token %}
+                <button class="secondary" type="submit">Cerrar sesión</button>
+            </form>
+        </div>
+    {% endif %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>
